@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>NewsHub | User settings</title>
+  <link rel="stylesheet" href="/static/css/site.css" />
+  <link rel="stylesheet" href="/static/css/login.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
+</head>
+
+<body ng-app="newsApp" ng-controller="NewsController" ng-cloak>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-messages.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-aria.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-animate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+  <script src="../static/js/newsapp-auth.js"></script>
+
+  <div class="login-container">
+
+    <md-card>
+      <md-toolbar class="md-toolbar-tools">
+        <h2>User info</h2>
+        <span flex></span>
+        <md-button class="md-primary">
+          <a href="/">Home</a>
+        </md-button>
+      </md-toolbar>
+      <md-content class="md-padding">
+
+        <form name="userForm" method="POST" action="/user/update">
+
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Username</label>
+              <input type="text" name="username" ng-model="user.username" disabled required md-no-asterisk>
+              <div ng-messages="userForm.username.$error" role="alert" multiple>
+                <div ng-message="required" class="required">Required</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Email</label>
+              <input type="email" name="email" ng-model="user.email" required md-no-asterisk>
+              <div ng-messages="userForm.email.$error" role="alert" multiple>
+                <div ng-message="required" class="required">Required</div>
+              </div>
+            </md-input-container>
+          </div>
+          <div lay-gt-sm="row" style="text-align: center;">
+            <%= msg %>
+          </div>
+          <div layout-gt-sm="row" style="margin-top: 10px;">
+            <span flex></span>
+            <md-button type="submit" class="md-raised md-primary">
+              Save
+            </md-button>
+          </div>
+
+        </form>
+
+      </md-content>
+    </md-card>
+
+    <form method="POST" action="/user/delete" style="display: flex; justify-content: center; margin-top: 20px;">
+      <md-button type="submit" class="md-raised md-warn" style="padding: 0 6px !important;">
+        Delete user
+      </md-button>
+    </form>
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+    color: #040f1f !important;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.md-button {
+    padding: 0 !important;
+}

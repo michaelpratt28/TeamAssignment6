@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>NewsHub</title>
+  <link rel="stylesheet" href="/static/css/site.css" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body ng-app="newsApp" ng-controller="NewsController" ng-cloak>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-messages.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-aria.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-animate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+  <script src="../static/js/newsapp-auth.js"></script>
+
+
+  <div class="top-pane">
+    <div layout-gt-sm="row" class="account-info">
+      <span flex></span>
+      <h3>Welcome
+        <%= username %>.
+      </h3>
+      <div>
+        <md-menu md-position-mode="target-right target">
+          <md-button aria-label="Open options menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+            <md-icon md-menu-origin md-svg-src="/static/icons/menu.svg"></md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button style="padding: 0;">
+                <a href="/user" style="margin: 6px 16px;">
+                  <div layout="row" flex>
+                    <p flex>User settings</p>
+                    <md-icon md-menu-align-target md-svg-src="/static/icons/person.svg" style="margin: auto 3px auto 0;"></md-icon>
+                  </div>
+                </a>
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button style="padding: 0;">
+                <a href="/logout" style="padding: 0 16px;">
+                  <div layout="row" flex>
+                    <p flex>Logout</p>
+                    <md-icon md-menu-align-target md-svg-src="/static/icons/eject.svg" style="margin: auto 3px auto 0;"></md-icon>
+                  </div>
+                </a>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
+    </div>
+    <div class="source" ng-repeat="source in sources" back-img="../static/images/{{source.imgUrl}}" ng-click="selectSource(source)"
+      ng-class="{'activeSource': source===activeSource}" title="{{source.name}}">
+    </div>
+  </div>
+  <div class="topStories">
+    <div class="article" ng-repeat="article in topStories" back-color="{{activeSource.primary}} {{activeSource.secondary}}">
+      <div class="article-img" back-img="{{article.urlToImage}}" ng-click="goTo(article.url)"></div>
+      <div class="words" ng-click="goTo(article.url)">
+        <span>{{article.title}}</span><br>
+        <span>{{article.description}}</span>
+      </div>
+      <div class="my-favorites">
+        <p class="favorite-btn" back-color="{{activeSource.secondary}} {{activeSource.primary}}" ng-click="isFavorite(article.title) ? removeFromFavorites(article.title) : addToFavorites($index)">{{isFavorite(article.title) ? '-' : '+' }}</p>
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+
+</body>
+
+</html>

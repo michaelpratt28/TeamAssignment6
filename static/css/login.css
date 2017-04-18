@@ -1,0 +1,10 @@
+body {
+  display: flex;
+  justify-content: center;
+  background-color: #5d5d5d;
+}
+
+.login-container {
+  width: 40%;
+  margin: 100px;
+}
